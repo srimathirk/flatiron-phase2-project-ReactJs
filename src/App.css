@@ -54,3 +54,35 @@ header h1 {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+/* .cards {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+} */
+/* .card {
+  text-align: center;
+  border: rgb(65, 218, 59) solid 1px;
+  padding: 1rem;
+  width: 19rem;
+  height: 25rem;
+  display: inline-grid;
+  margin: 1rem 2rem;
+  box-shadow: 3px 4px #ea40e7
+} */
+ 
+.imageGallery {
+  text-align: center;
+  margin: 1rem 2rem;
+  box-shadow: 0 0 7px 0 #ddd;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+/* .imageGallery .image {
+  height: 225px;
+  position: relative;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}  */

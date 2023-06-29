@@ -1,0 +1,11 @@
+-Main aim is to create responsive ImageGallery Webpage
+-fetch and display all imageCards into the webpage 
+-when clicked the image should show display full image
+-when click zoom button the impage should display zoom in 
+- when click close button the image should go back to original card grid.
+-Allow users to search a image by its name and description in order to narrow down the cards shown on page.
+-can add more image cards on to the ImageGallery
+-can delete a image card if necessary
+-can use post request for any additions later.
+-display category bar and if i click category it should display particular category.
+
