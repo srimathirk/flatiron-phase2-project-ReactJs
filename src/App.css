@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  height: 100vh;
+  font: 1rem, Arial;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  display: grid;
+  grid-template-areas: "header", "main", "footer";
+  grid-template-rows: 5rem 1fr 5rem; /* 1rem=10px(62.5%) */
+  grid-template-columns: 1fr;
+  height: 100%;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  background-color: #ddef86;
+  color: #ffffff;
+  /* display flex in header becoz need to keep both logo and signin,cart in same line */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between; /* space between to get logo in rt and other in left */
+  align-items: center; /* put 50px in center */
+  padding: 1rem;
+}
+header h1 {
+  line-height: 1;
+  font-family: serif;
+}
+.logo > img {
+  width: 100px;
+}
+
+.searchbar {
+  flex: 1 1 auto;
+  margin: 0 1rem;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.searchbar input {
+  width: 90%;
+  font-size: 1rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding-left: 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.searchbar button {
+  padding: 0 0.25rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
