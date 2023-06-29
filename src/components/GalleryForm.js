@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 function GalleryForm({onAdd}) {
     const[formData,setFormData]=useState({
-        image:"",
+        images:"",
         description:"",
         category:""
       });
@@ -14,7 +14,7 @@ function GalleryForm({onAdd}) {
       }
       function handleSubmit(e){
         e.preventDefault();
-        const newImageData = {image:formData.image,description:formData.description,category:formData.category};
+        const newImageData = {images:formData.images,description:formData.description,category:formData.category};
           fetch(`http://localhost:3041/gallery`,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -30,10 +30,10 @@ function GalleryForm({onAdd}) {
      
       <input
         type="text"
-        name="image"
+        name="images"
         placeholder="Enter image URL..."
         className="input-text"
-        value={formData.image}
+        value={formData.images}
         onChange={handleChange}
       />
       <br />

@@ -31,6 +31,10 @@ function App() {
 
    
   }
+  function handleDeleteImageCard(deletedImageCard){
+    const updatedImageCard = (collections.filter((card)=> card.id !== deletedImageCard.id))
+    setCollections(updatedImageCard)
+  }
   return (
     <div className="App">
       <Header searchValue={searchValue} />
@@ -38,7 +42,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleButtonClick}>Add Image</button>
       </div>
-      <GalleryCollection collections={collections} />
+      <GalleryCollection collections={collections} onDelete={handleDeleteImageCard}/>
       
     </div>
   );
