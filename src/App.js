@@ -35,6 +35,15 @@ function App() {
     const updatedImageCard = (collections.filter((card)=> card.id !== deletedImageCard.id))
     setCollections(updatedImageCard)
   }
+  function handleUpdateViews(cardId){
+    const updatedImageCard = collections.map((card)=>{
+      if(card.id === cardId){
+        return { ...card, views: card.likes + 1}
+      }
+      return card
+    })
+    setCollections(updatedImageCard)
+  }
   return (
     <div className="App">
       <Header searchValue={searchValue} />
@@ -42,7 +51,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleButtonClick}>Add Image</button>
       </div>
-      <GalleryCollection collections={collections} onDelete={handleDeleteImageCard}/>
+      <GalleryCollection collections={collections} onDelete={handleDeleteImageCard} onUpdate={handleUpdateViews}/>
       
     </div>
   );

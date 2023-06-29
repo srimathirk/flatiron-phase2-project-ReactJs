@@ -4,7 +4,8 @@ function GalleryForm({onAdd}) {
     const[formData,setFormData]=useState({
         images:"",
         description:"",
-        category:""
+        category:"",
+        views:""
       });
       function handleChange(e){
         setFormData({
@@ -14,7 +15,7 @@ function GalleryForm({onAdd}) {
       }
       function handleSubmit(e){
         e.preventDefault();
-        const newImageData = {images:formData.images,description:formData.description,category:formData.category};
+        const newImageData = {images:formData.images,description:formData.description,category:formData.category,view:formData.views};
           fetch(`http://localhost:3041/gallery`,{
             method: "POST",
             headers: { "Content-Type": "application/json" },
