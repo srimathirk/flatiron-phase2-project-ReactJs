@@ -5,11 +5,11 @@ function Search({ searchValue }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted",search);
+    console.log("submitted", search);
     searchValue(search);
   }
   function handleSearch(e) {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setSearch(e.target.value);
   }
 

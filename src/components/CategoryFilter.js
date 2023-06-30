@@ -1,8 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 
-function CategoryFilter({ categories , selectedCategory, handleCategory,showCategories,setShowCategories}) {  
-    //const selectedCategory = event.target.value;
-   
+function CategoryFilter({
+  categories,
+  selectedCategory,
+  handleCategory,
+  openModal
+}) {
+  const [showCategories, setShowCategories] = useState(false);
+
   return (
     <div>
       <h2>Filter Categories</h2>
@@ -18,17 +23,19 @@ function CategoryFilter({ categories , selectedCategory, handleCategory,showCate
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => handleCategory(category)}
-                className={selectedCategory === category ? 'active' : ''}
+                onClick={() => {
+                  handleCategory(category);
+                  openModal(null); // Open modal with null image to close it if it's open
+                }}
+                className={selectedCategory === category ? "active" : ""}
               >
                 {category}
               </button>
             ))}
           </div>
-          </div>
+        </div>
       )}
     </div>
-
   );
 }
 

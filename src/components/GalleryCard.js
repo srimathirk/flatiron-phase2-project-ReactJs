@@ -1,7 +1,7 @@
 import React from "react";
 
-function GalleryCard({ image, onDelete, onUpdate }) {
-  const { images, description,category, views } = image;
+function GalleryCard({ card,image , onDelete, onUpdate ,openModal }) {
+  const { images, description,category, views } = card;
 
   function handleDelete() {
     fetch(`http://localhost:3041/gallery/${image.id}`, { method: "DELETE" })
@@ -9,18 +9,22 @@ function GalleryCard({ image, onDelete, onUpdate }) {
       .then(() => onDelete(image));
   }
   function handleUpdateClick() {
-    fetch(`http://localhost:3041/gallery/${image.id}`, {
+    fetch(`http://localhost:3041/gallery/${card.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ views: views + 1 }),
+      body: JSON.stringify({views : views + 1 } ),
     })
       .then((r) => r.json())
-      .then(() => onUpdate(image.id));
+      .then(() => onUpdate(card.id));
   }
+  function handleClick(){
+    console.log(image)
+    openModal(image)
+  };
   return (
     <div className="grid-wrapper">
       <div className="image">
-        <img src={images} alt=""  />
+        <img src={images} alt={description} onClick={handleClick} />
         
       </div>
       <div className="content">
