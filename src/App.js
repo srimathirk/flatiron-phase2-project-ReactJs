@@ -4,11 +4,15 @@ import GalleryCollection from "./components/GalleryCollection";
 import "./App.css";
 import GalleryForm from "./components/GalleryForm";
 import CategoryFilter from "./components/CategoryFilter";
+import Modal from "./components/Modal";
+
 function App() {
   const [gallery, setGallery] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3041/gallery`)
@@ -61,6 +65,24 @@ function App() {
     });
     setGallery(updatedImageCard);
   }
+  function handleImageSelect(image){
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  }
+  function handleModalClose(){
+    setSelectedImage(null)
+    setIsModalOpen(false)
+  }
+  function handlePrevImage(prevImage){
+    setSelectedImage(prevImage)
+    setIsModalOpen(true)
+  }
+  function handleNextImage(nextImage){
+    setSelectedImage(nextImage)
+    setIsModalOpen(true)
+  }
+
+  //console.log(selectedImage)
   return (
     <div className="App">
       <Header searchValue={searchValue} />
@@ -79,7 +101,11 @@ function App() {
         gallerys={galleryImages}
         onDelete={handleDeleteImageCard}
         onUpdate={handleUpdateViews}
+        onImageSelect={handleImageSelect}
       />
+      {selectedImage && isModalOpen && (
+        <Modal selectedImage={selectedImage} images={galleryImages} onClose={handleModalClose} onPrev={handlePrevImage} onNext={handleNextImage}/>
+      )} 
     </div>
   );
 }
