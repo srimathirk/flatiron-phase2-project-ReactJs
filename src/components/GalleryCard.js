@@ -1,7 +1,7 @@
 import React from "react";
 
 function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
-  const { images, description, category, views } = image;
+  const { images, description, views } = image;
 
   function handleDelete() {
     fetch(`http://localhost:3041/gallery/${image.id}`, { method: "DELETE" })
@@ -17,11 +17,12 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
       .then((r) => r.json())
       .then(() => onUpdate(image.id));
   }
-  
+  function handleClick(){
+    onImageSelect(image)
+  }
   //console.log({images})
   return (
-    <div className="grid-wrapper" onClick={handleUpdateClick} >
-     
+    <div className="grid-wrapper" onClick={handleClick}>
       <div className="image">
         <img src={images} alt={description} />
       </div>
@@ -32,7 +33,9 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
           <button className="emoji-button delete" onClick={handleDelete}>
             🗑
           </button>
-          👀{views}
+          <button className="View-btn" onClick={handleUpdateClick}>
+            👀{views}
+          </button>
         </div>
       </div>
     </div>

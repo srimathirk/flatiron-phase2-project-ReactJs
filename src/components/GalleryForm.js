@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 
-function GalleryForm() {
-  const [gallery,setGallery] = useState([])
+function GalleryForm({ onAdd }) {
   const [formData, setFormData] = useState({
     images: "",
     description: "",
     category: "",
   });
-  function onAdd(newImage) {
-    setGallery([...gallery, newImage]);
-  }
   function handleChange(e) {
     setFormData({
       ...formData,
@@ -29,7 +25,7 @@ function GalleryForm() {
       body: JSON.stringify(newImageData),
     })
       .then((r) => r.json())
-      .then((card) => onAdd(card));
+      .then((newImage) => onAdd(newImage));
   }
   return (
     <div className="container">

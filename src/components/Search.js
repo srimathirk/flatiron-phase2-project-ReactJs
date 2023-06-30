@@ -12,6 +12,7 @@ function Search({ searchValue }) {
     console.log(e.target.value);
     setSearch(e.target.value);
   }
+  
 
   return (
     <form className="searchbar" onSubmit={handleSubmit}>

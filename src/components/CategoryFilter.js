@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Gallery from "./Gallery";
 
-function CategoryFilter({ categories, selectedCategory, handleCategory ,gallery }) {
+function CategoryFilter({ categories, selectedCategory, handleCategory }) {
   const [showCategories, setShowCategories] = useState(false);
 
   return (
@@ -27,7 +26,6 @@ function CategoryFilter({ categories, selectedCategory, handleCategory ,gallery 
                 {category}
               </button>
             ))}
-            
           </div>
         </div>
       )}

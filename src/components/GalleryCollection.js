@@ -1,7 +1,7 @@
 import React from "react";
 import GalleryCard from "./GalleryCard";
 
-function GalleryCollection({ gallerys, onDelete, onUpdate }) {
+function GalleryCollection({ gallerys, onDelete, onUpdate,onImageSelect }) {
   
   
   return (
@@ -10,7 +10,7 @@ function GalleryCollection({ gallerys, onDelete, onUpdate }) {
         <GalleryCard
           key={index}
           image={image}
-          
+          onImageSelect={onImageSelect}
           onDelete={onDelete}
           onUpdate={onUpdate}
         />

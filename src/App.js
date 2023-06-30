@@ -1,21 +1,25 @@
-import React ,{useState,useEffect} from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import GalleryCollection from "./components/GalleryCollection";
+import "./App.css";
 import GalleryForm from "./components/GalleryForm";
 import CategoryFilter from "./components/CategoryFilter";
 import Modal from "./components/Modal";
-import Gallery from "./components/Gallery";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
+ // let ORIGINALGALLERY;
   const [gallery, setGallery] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
-  
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
+        //ORIGINALGALLERY=gallery
         setGallery(gallery);
       });
   }, []);
@@ -36,6 +40,16 @@ function App() {
     }
   });
 
+  function handleAddCard(newImage) {
+    setGallery([...gallery, newImage]);
+  }
+  
+
+  function searchValue(search) {
+    setGallery(
+      gallery.filter((card) => card.description.toLowerCase().includes(search))
+    );
+  }
   function handleDeleteImageCard(deletedImageCard) {
     const updatedImageCard = gallery.filter(
       (card) => card.id !== deletedImageCard.id
@@ -51,36 +65,59 @@ function App() {
     });
     setGallery(updatedImageCard);
   }
-  return (
-    <Router>
-      <div className="App">
-        <Header />
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Gallery</Link>
-            </li>
-            <li>
-              <Link to="/add">Add Image</Link>
-            </li>
-            <li>
-              <Link to="/filter">Filter</Link>
-            </li>
-            
-          </ul>
-        </nav>
+  function handleImageSelect(image) {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  }
+  function handleModalClose() {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+  }
+  function handlePrevImage(prevImage) {
+    setSelectedImage(prevImage);
+    setIsModalOpen(true);
+  }
+  function handleNextImage(nextImage) {
+    setSelectedImage(nextImage);
+    setIsModalOpen(true);
+  }
 
-        <Routes>
-          <Route path="/" element={<GalleryCollection gallerys={galleryImages} onDelete={handleDeleteImageCard}
-        onUpdate={handleUpdateViews}
-/>} />
-          <Route path="/add" element={<GalleryForm />} />
-          <Route path="/filter" element={<CategoryFilter categories={categories} selectedCategory={selectedCategory}
-        handleCategory={setSelectedCategory} gallery={galleryImages}/>} />
-          <Route path="/modal/:id" element={<Modal />} />
-        </Routes>
-      </div>
-    </Router>
+  //console.log(selectedImage)
+  return (
+    <div className="App">
+      <Header searchValue={searchValue} />
+      
+      <Switch>
+          
+      <Route path="/new">
+      <GalleryForm categories={categories} onAdd={handleAddCard} />
+      </Route>
+        <Route exact path="/">
+          
+         
+          <CategoryFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            handleCategory={setSelectedCategory}
+          />
+          <GalleryCollection
+            gallerys={galleryImages}
+            onDelete={handleDeleteImageCard}
+            onUpdate={handleUpdateViews}
+            onImageSelect={handleImageSelect}
+          />
+          {selectedImage && isModalOpen && (
+            <Modal
+              selectedImage={selectedImage}
+              images={galleryImages}
+              onClose={handleModalClose}
+              onPrev={handlePrevImage}
+              onNext={handleNextImage}
+            />
+          )}
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
