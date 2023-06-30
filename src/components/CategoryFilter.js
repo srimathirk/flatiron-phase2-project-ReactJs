@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-function CategoryFilter({
-  categories,
-  selectedCategory,
-  handleCategory,
-  openModal
-}) {
+function CategoryFilter({ categories, selectedCategory, handleCategory }) {
   const [showCategories, setShowCategories] = useState(false);
 
   return (
@@ -25,7 +20,6 @@ function CategoryFilter({
                 key={category}
                 onClick={() => {
                   handleCategory(category);
-                  openModal(null); // Open modal with null image to close it if it's open
                 }}
                 className={selectedCategory === category ? "active" : ""}
               >
