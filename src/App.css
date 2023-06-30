@@ -11,19 +11,11 @@ body {
 header {
   background-color: #ddef86;
   color: #ffffff;
+}
   /* display flex in header becoz need to keep both logo and signin,cart in same line */
-  display: flex;
+  /* display: flex;
   justify-content: space-between; /* space between to get logo in rt and other in left */
-  align-items: center; /* put 50px in center */
-  padding: 1rem;
-}
-header h1 {
-  line-height: 1;
-  font-family: serif;
-}
-.logo > img {
-  width: 100px;
-}
+  */ */
 
 .searchbar {
   flex: 1 1 auto;
