@@ -1,23 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-function CategoryFilter({ gallery, setGallery, categories }) {
-  
-  const [showCategories, setShowCategories] = useState(false);
-
-  const [selectedCategory,setSelectedCategory]=useState("ALL")
-  const handleCategory = (category) => {
-    setSelectedCategory(category)
-
-    if (category === "ALL") {
-      setGallery(gallery);
-    } else {
-      const filteredGallery = gallery.filter(
-        (image) => image.category === category
-      );
-      setGallery(filteredGallery);
-    }
-    setShowCategories(false);
-  }
+function CategoryFilter({ categories , selectedCategory, handleCategory,showCategories,setShowCategories}) {  
     //const selectedCategory = event.target.value;
    
   return (
@@ -32,9 +15,6 @@ function CategoryFilter({ gallery, setGallery, categories }) {
             Hide Categories
           </button>
           <div>
-            <button onClick={() => handleCategory("ALL")}>
-              All Categories
-            </button>
             {categories.map((category) => (
               <button
                 key={category}
@@ -45,9 +25,10 @@ function CategoryFilter({ gallery, setGallery, categories }) {
               </button>
             ))}
           </div>
-        </div>
+          </div>
       )}
     </div>
+
   );
 }
 

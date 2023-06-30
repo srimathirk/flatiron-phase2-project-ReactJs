@@ -9,6 +9,9 @@ function App() {
   const [gallery, setGallery] = useState([]);
   const [categories,setCategories] = useState([]);
   const [showForm,setShowForm] = useState(false)
+  const [selectedCategory,setSelectedCategory]=useState("ALL")
+  const [showCategories, setShowCategories] = useState(false);
+
   useEffect(() => {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
@@ -25,6 +28,15 @@ function App() {
       });
   }, []);
 
+  const galleryImages = gallery.filter((image)=>{
+    if(selectedCategory === "ALL"){
+      return true;
+    } else {
+      return image.category === selectedCategory
+      }
+      setShowCategories(false);
+
+  })
   function handleAddCard(newImage){
     setGallery([...gallery,newImage])
   }
@@ -61,8 +73,8 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleButtonClick}>Add Image</button>
       </div>
-      <CategoryFilter gallery={gallery} setGallery={setGallery} categories={categories} />
-      <GalleryCollection gallery={gallery} onDelete={handleDeleteImageCard} onUpdate={handleUpdateViews}/>
+      <CategoryFilter categories={categories} selectedCategory={selectedCategory} handleCategory={setSelectedCategory} showCategories={showCategories} setShowCategories={setShowCategories}/>
+      <GalleryCollection gallerys={galleryImages} onDelete={handleDeleteImageCard} onUpdate={handleUpdateViews}/>
       
     </div>
   );
