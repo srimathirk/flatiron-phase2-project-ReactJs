@@ -17,12 +17,11 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
       .then((r) => r.json())
       .then(() => onUpdate(image.id));
   }
-  function handleClick(){
-    onImageSelect(image)
-  }
+  
   //console.log({images})
   return (
-    <div className="grid-wrapper" onClick={handleClick}>
+    <div className="grid-wrapper" onClick={handleUpdateClick} >
+     
       <div className="image">
         <img src={images} alt={description} />
       </div>
@@ -33,9 +32,7 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
           <button className="emoji-button delete" onClick={handleDelete}>
             🗑
           </button>
-          <button className="View-btn" onClick={handleUpdateClick}>
-            👀{views}
-          </button>
+          👀{views}
         </div>
       </div>
     </div>

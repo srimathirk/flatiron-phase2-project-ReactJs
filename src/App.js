@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React ,{useState,useEffect} from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import GalleryCollection from "./components/GalleryCollection";
-import "./App.css";
 import GalleryForm from "./components/GalleryForm";
 import CategoryFilter from "./components/CategoryFilter";
 import Modal from "./components/Modal";
+import Gallery from "./components/Gallery";
 
 function App() {
   const [gallery, setGallery] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   useEffect(() => {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
@@ -38,18 +36,6 @@ function App() {
     }
   });
 
-  function handleAddCard(newImage) {
-    setGallery([...gallery, newImage]);
-  }
-  function handleButtonClick() {
-    setShowForm((showForm) => !showForm);
-  }
-
-  function searchValue(search) {
-    setGallery(
-      gallery.filter((card) => card.description.toLowerCase().includes(search))
-    );
-  }
   function handleDeleteImageCard(deletedImageCard) {
     const updatedImageCard = gallery.filter(
       (card) => card.id !== deletedImageCard.id
@@ -65,48 +51,36 @@ function App() {
     });
     setGallery(updatedImageCard);
   }
-  function handleImageSelect(image){
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  }
-  function handleModalClose(){
-    setSelectedImage(null)
-    setIsModalOpen(false)
-  }
-  function handlePrevImage(prevImage){
-    setSelectedImage(prevImage)
-    setIsModalOpen(true)
-  }
-  function handleNextImage(nextImage){
-    setSelectedImage(nextImage)
-    setIsModalOpen(true)
-  }
-
-  //console.log(selectedImage)
   return (
-    <div className="App">
-      <Header searchValue={searchValue} />
-      {showForm ? (
-        <GalleryForm categories={categories} onAdd={handleAddCard} />
-      ) : null}
-      <div className="buttonContainer">
-        <button onClick={handleButtonClick}>Add Image</button>
-      </div>
-      <CategoryFilter
-        categories={categories}
-        selectedCategory={selectedCategory}
-        handleCategory={setSelectedCategory}
-      />
-      <GalleryCollection
-        gallerys={galleryImages}
-        onDelete={handleDeleteImageCard}
+    <Router>
+      <div className="App">
+        <Header />
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Gallery</Link>
+            </li>
+            <li>
+              <Link to="/add">Add Image</Link>
+            </li>
+            <li>
+              <Link to="/filter">Filter</Link>
+            </li>
+            
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<GalleryCollection gallerys={galleryImages} onDelete={handleDeleteImageCard}
         onUpdate={handleUpdateViews}
-        onImageSelect={handleImageSelect}
-      />
-      {selectedImage && isModalOpen && (
-        <Modal selectedImage={selectedImage} images={galleryImages} onClose={handleModalClose} onPrev={handlePrevImage} onNext={handleNextImage}/>
-      )} 
-    </div>
+/>} />
+          <Route path="/add" element={<GalleryForm />} />
+          <Route path="/filter" element={<CategoryFilter categories={categories} selectedCategory={selectedCategory}
+        handleCategory={setSelectedCategory} gallery={galleryImages}/>} />
+          <Route path="/modal/:id" element={<Modal />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
