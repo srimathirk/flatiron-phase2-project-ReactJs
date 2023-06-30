@@ -18,7 +18,7 @@ function Search({ searchValue }) {
       <input
         type="text"
         id="search"
-        placeholder="search images by category"
+        placeholder="search images by description"
         value={search}
         onChange={handleSearch}
       />

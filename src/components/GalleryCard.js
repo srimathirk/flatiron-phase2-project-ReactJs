@@ -1,37 +1,42 @@
 import React from "react";
 
-function GalleryCard({ card, onDelete, onUpdate }) {
-  const { images, description, views } = card;
+function GalleryCard({ image, onDelete, onUpdate }) {
+  const { images, description,category, views } = image;
 
   function handleDelete() {
-    fetch(`http://localhost:3041/gallery/${card.id}`, { method: "DELETE" })
+    fetch(`http://localhost:3041/gallery/${image.id}`, { method: "DELETE" })
       .then((r) => r.json())
-      .then(() => onDelete(card));
+      .then(() => onDelete(image));
   }
-  function handleUpdateClick(){
-    fetch(`http://localhost:3041/gallery/${card.id}`, {
-    method: "PATCH",
-    headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify(
-        {views: views +1}
-      )
-  })
-    .then((r) => r.json())
-    .then(() => onUpdate(card.id));
-}
+  function handleUpdateClick() {
+    fetch(`http://localhost:3041/gallery/${image.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ views: views + 1 }),
+    })
+      .then((r) => r.json())
+      .then(() => onUpdate(image.id));
+  }
   return (
-    <div>
+    <div className="grid-wrapper">
       <div className="image">
-        <img src={images} alt="" />
+        <img src={images} alt=""  />
+        
       </div>
       <div className="content">
         <div className="Descripiton">{description}</div>
+       
         <div>
           <button className="emoji-button delete" onClick={handleDelete}>
             🗑
           </button>
+          <button className="View-btn" onClick={handleUpdateClick}>
+            👀{views}
+          </button>
         </div>
-        <div> <button className="View-btn" onClick={handleUpdateClick}>👀</button></div>
+      
+          
+        
       </div>
     </div>
   );

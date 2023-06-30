@@ -3,28 +3,38 @@ import Header from "./components/Header";
 import GalleryCollection from "./components/GalleryCollection";
 import "./App.css";
 import GalleryForm from "./components/GalleryForm";
+import CategoryFilter from "./components/CategoryFilter";
 
 function App() {
-  const [collections, setCollections] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [categories,setCategories] = useState([]);
   const [showForm,setShowForm] = useState(false)
   useEffect(() => {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
-        setCollections(gallery);
+        setGallery(gallery);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:3041/categories`)
+      .then((r) => r.json())
+      .then((categories) => {
+        setCategories(categories);
       });
   }, []);
 
   function handleAddCard(newImage){
-    setCollections([...collections,newImage])
+    setGallery([...gallery,newImage])
   }
   function handleButtonClick() {
     setShowForm((showForm) => !showForm);
   }
 
   function searchValue(search) {
-    setCollections(
-      collections.filter((card) =>
+    setGallery(
+      gallery.filter((card) =>
         card.description.toLowerCase().includes(search)
       )
     );
@@ -32,26 +42,27 @@ function App() {
    
   }
   function handleDeleteImageCard(deletedImageCard){
-    const updatedImageCard = (collections.filter((card)=> card.id !== deletedImageCard.id))
-    setCollections(updatedImageCard)
+    const updatedImageCard = (gallery.filter((card)=> card.id !== deletedImageCard.id))
+    setGallery(updatedImageCard)
   }
   function handleUpdateViews(cardId){
-    const updatedImageCard = collections.map((card)=>{
+    const updatedImageCard = gallery.map((card)=>{
       if(card.id === cardId){
-        return { ...card, views: card.likes + 1}
+        return { ...card, views: card.views + 1}
       }
       return card
     })
-    setCollections(updatedImageCard)
+    setGallery(updatedImageCard)
   }
   return (
     <div className="App">
       <Header searchValue={searchValue} />
-      {showForm ? <GalleryForm onAdd={handleAddCard}/> : null}
+      {showForm ? <GalleryForm categories={categories} onAdd={handleAddCard}/> : null}
       <div className="buttonContainer">
         <button onClick={handleButtonClick}>Add Image</button>
       </div>
-      <GalleryCollection collections={collections} onDelete={handleDeleteImageCard} onUpdate={handleUpdateViews}/>
+      <CategoryFilter gallery={gallery} setGallery={setGallery} categories={categories} />
+      <GalleryCollection gallery={gallery} onDelete={handleDeleteImageCard} onUpdate={handleUpdateViews}/>
       
     </div>
   );
