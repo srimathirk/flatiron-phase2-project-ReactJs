@@ -8,8 +8,9 @@ import Modal from "./components/Modal";
 import { Route, Switch } from "react-router-dom";
 
 function App() {
-  let ORIGINALGALLERY;
+  //let ORIGINALGALLERY;
   const [gallery, setGallery] = useState([]);
+  const [originalGallery, setOriginalGallery] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,8 +20,9 @@ function App() {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
-        ORIGINALGALLERY=gallery
+        //ORIGINALGALLERY=gallery
         setGallery(gallery);
+        setOriginalGallery(gallery);
       });
   }, []);
 
@@ -43,17 +45,21 @@ function App() {
   function handleAddCard(newImage) {
     setGallery([...gallery, newImage]);
   }
-  
 
   function searchValue(search) {
-    if(search.trim()=== ""){
-      setGallery([...ORIGINALGALLERY]);
+    if (search.trim() === "") {
+      if (originalGallery) {
+        setGallery([...originalGallery]);
+      }
     } else {
-      setGallery(
-        ORIGINALGALLERY.filter((card) => card.description.toLowerCase().includes(search))
-      );
+      if (originalGallery) {
+        setGallery(
+          originalGallery.filter((card) =>
+            card.description.toLowerCase().includes(search)
+          )
+        );
+      }
     }
-    
   }
   function handleDeleteImageCard(deletedImageCard) {
     const updatedImageCard = gallery.filter(
@@ -91,15 +97,12 @@ function App() {
   return (
     <div className="App">
       <Header searchValue={searchValue} />
-      
+
       <Switch>
-          
-      <Route path="/new">
-      <GalleryForm categories={categories} onAdd={handleAddCard} />
-      </Route>
+        <Route path="/new">
+          <GalleryForm categories={categories} onAdd={handleAddCard} />
+        </Route>
         <Route exact path="/">
-          
-         
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}
