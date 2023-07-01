@@ -1,0 +1,13 @@
+-surround router with app in index.js and render with getElementById root.
+-in app.js create routes and call the children components inside app
+-create all children components with respective functions
+-fetch all the cards from db.json file from backend project
+-get all the objects using useState and useEffect and display the card details
+-make the app responsive by adding events
+-update card ,delete the card and post or add card image 
+-search the card description image using onChange event
+-filter the card by category by clicking particular category
+-open the Modal and display image by clicking card and close it by clicking close button
+-slide the card after opening in OpenModal form
+-using routes set one to home-displays(imagegallery) addForm-adding(gallery card).
+-style the header and all body components
