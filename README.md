@@ -72,3 +72,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+To Open Project in web browser
+first run 
+Backend Code GitHub Repository
+
+https://github.com/srimathirk/flatiron-phase2-project-json-server
+
+by running npm start
+http://localhost:3041
+you can see db.json (gallery.json and categories.json) to open the app
+
+then click npm start in this project
+ which will open in localhost:3000
+
+
+
+ 
+
