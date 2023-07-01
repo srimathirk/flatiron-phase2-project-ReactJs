@@ -12,21 +12,26 @@ function Header({ searchValue }) {
       </h1>
       <Search searchValue={searchValue} />
       <div className="navbar">
-        
-      <NavLink
-        to="/"
-        exact
-        // activeStyle={{
-        //   background: "white",
-        // }}
-      >
-
-        Home
-      </NavLink>
-      <NavLink to="/new" exact activeStyle={{
-          background: "white",
-        }}> New Card</NavLink>
-        </div>
+        <NavLink
+          to="/"
+          exact
+          activeStyle={{
+            background: "light green",
+          }}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/new"
+          exact
+          activeStyle={{
+            background: "light green",
+          }}
+        >
+          {" "}
+          New Card
+        </NavLink>
+      </div>
     </header>
   );
 }

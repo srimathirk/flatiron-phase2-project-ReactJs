@@ -61,9 +61,9 @@ header h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #d4e46a;
+  background-color: #5edf2f;
   padding: 10px;
-  
+  border-radius: 50px;
 }
 
 .navbar a {
@@ -73,12 +73,12 @@ header h1 {
 }
 
 .navbar a:hover {
-  background-color: #11e35b;
+  background-color: #618d70;
   border-radius: 5px;
 }
 
 .navbar a.active {
-  background-color: rgb(129, 183, 193);
+  background-color: rgb(226, 133, 165);
 }
 
 .imageGallery {
