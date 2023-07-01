@@ -8,7 +8,7 @@ import Modal from "./components/Modal";
 import { Route, Switch } from "react-router-dom";
 
 function App() {
- // let ORIGINALGALLERY;
+  let ORIGINALGALLERY;
   const [gallery, setGallery] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -19,7 +19,7 @@ function App() {
     fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
-        //ORIGINALGALLERY=gallery
+        ORIGINALGALLERY=gallery
         setGallery(gallery);
       });
   }, []);
@@ -46,9 +46,14 @@ function App() {
   
 
   function searchValue(search) {
-    setGallery(
-      gallery.filter((card) => card.description.toLowerCase().includes(search))
-    );
+    if(search.trim()=== ""){
+      setGallery([...ORIGINALGALLERY]);
+    } else {
+      setGallery(
+        ORIGINALGALLERY.filter((card) => card.description.toLowerCase().includes(search))
+      );
+    }
+    
   }
   function handleDeleteImageCard(deletedImageCard) {
     const updatedImageCard = gallery.filter(
