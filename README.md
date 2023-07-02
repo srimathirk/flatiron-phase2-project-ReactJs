@@ -43,6 +43,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 https://github.com/srimathirk/flatiron-phase2-project-json-server
 
+deployment backend json:
+https://flatiron-phase2-project-json-server.onrender.com/
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
@@ -76,11 +79,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 To Open Project in web browser
 first run 
-Backend Code GitHub Repository
-
+# Backend Code GitHub Repository
 https://github.com/srimathirk/flatiron-phase2-project-json-server
+# backend for deploying project:
+https://flatiron-phase2-project-json-server.onrender.com/
+
+
 
 by running npm start
+
 http://localhost:3041
 you can see db.json (gallery.json and categories.json) to open the app
 

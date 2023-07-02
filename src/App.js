@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`https://flatiron-phase2-project-json-server.onrender.com//categories`)
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com/categories`)
       .then((r) => r.json())
       .then((categories) => {
         setCategories(categories);
