@@ -19,7 +19,7 @@ function GalleryForm({ onAdd }) {
       description: formData.description,
       category: formData.category,
     };
-    fetch(`http://localhost:3041/gallery`, {
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com/gallery`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newImageData),

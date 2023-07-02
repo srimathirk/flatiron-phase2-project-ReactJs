@@ -4,12 +4,12 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
   const { images, description, views } = image;
 
   function handleDelete() {
-    fetch(`http://localhost:3041/gallery/${image.id}`, { method: "DELETE" })
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com/gallery/${image.id}`, { method: "DELETE" })
       .then((r) => r.json())
       .then(() => onDelete(image));
   }
   function handleUpdateClick() {
-    fetch(`http://localhost:3041/gallery/${image.id}`, {
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com/gallery/${image.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ views: views + 1 }),

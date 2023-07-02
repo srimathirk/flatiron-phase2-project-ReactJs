@@ -17,7 +17,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3041/gallery`)
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
         //ORIGINALGALLERY=gallery
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3041/categories`)
+    fetch(`https://flatiron-phase2-project-json-server.onrender.com//categories`)
       .then((r) => r.json())
       .then((categories) => {
         setCategories(categories);
