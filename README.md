@@ -81,9 +81,8 @@ To Open Project in web browser
 first run 
 # Backend Code GitHub Repository
 https://github.com/srimathirk/flatiron-phase2-project-json-server
-# backend for deploying project:
-https://flatiron-phase2-project-json-server.onrender.com/
 
+ 
 
 
 by running npm start

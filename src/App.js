@@ -17,7 +17,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3041//gallery`)
+    fetch(`http://localhost:3041/gallery`)
       .then((r) => r.json())
       .then((gallery) => {
         //ORIGINALGALLERY=gallery
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3041//categories`)
+    fetch(`http://localhost:3041/categories`)
       .then((r) => r.json())
       .then((categories) => {
         setCategories(categories);

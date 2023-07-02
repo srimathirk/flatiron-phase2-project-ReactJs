@@ -9,7 +9,7 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
       .then(() => onDelete(image));
   }
   function handleUpdateClick() {
-    fetch(`http://localhost:3041//gallery/${image.id}`, {
+    fetch(`http://localhost:3041/gallery/${image.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ views: views + 1 }),
