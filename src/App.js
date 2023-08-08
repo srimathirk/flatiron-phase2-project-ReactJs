@@ -114,6 +114,8 @@ function App() {
             onUpdate={handleUpdateViews}
             onImageSelect={handleImageSelect}
           />
+           </Route>
+          <Route path="/images">
           {selectedImage && isModalOpen && (
             <Modal
               selectedImage={selectedImage}
@@ -122,7 +124,7 @@ function App() {
               onPrev={handlePrevImage}
               onNext={handleNextImage}
             />
-          )}
+          )} 
         </Route>
       </Switch>
     </div>

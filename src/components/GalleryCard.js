@@ -22,8 +22,8 @@ function GalleryCard({ image, onDelete, onUpdate , onImageSelect }) {
   }
   //console.log({images})
   return (
-    <div className="grid-wrapper" onClick={handleClick}>
-      <div className="image">
+    <div className="grid-wrapper" >
+      <div className="image" onClick={handleClick}>
         <img src={images} alt={description} />
       </div>
       <div className="content">

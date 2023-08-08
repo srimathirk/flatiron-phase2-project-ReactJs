@@ -31,6 +31,16 @@ function Header({ searchValue }) {
           {" "}
           New Card
         </NavLink>
+        <NavLink
+          to="/images"
+          exact
+          activeStyle={{
+            background: "light green",
+          }}
+        >
+          {" "}
+          modal image 
+        </NavLink>
       </div>
     </header>
   );
